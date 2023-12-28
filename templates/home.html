@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>This is the home page</h1>
+<div class="d-flex m-4 m-auto w-100">
+    {% for d in post %}
+    <div class="w-25 m-4 m-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ d.title }}</h5>
+                <p class="card-text">{{ d.content }}</p>
+                <p>{{ d.author.name }}</p>
+                <p class="">
+                    {% for cat in d.category.all %} <a href="" class="btn btn-primary"> {{ cat.name }} </a>{% endfor %}
+                </p>
+                <a href="#" class="btn btn-warning">Read More</a>
+                <a href="{% url 'edit_post' d.id %}" class="btn btn-danger">Edit</a>
+                <a href="{% url 'delete_post' d.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
